@@ -78,12 +78,18 @@ class GuessForm extends React.Component {
         btnText={button.value}
         btnValue={button.value}
         onClick={this.guess}
+        btnClass={'choice'}
       />
     );
 
     return (
       <form>
         {slideButtons}
+        <style jsx>{`
+          display:flex;
+          flex-wrap:wrap;
+          margin:2rem;
+        `}</style>
       </form>
     );
   }

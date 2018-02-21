@@ -15,8 +15,15 @@ const Slide = ({ img, year, naId, title, onGuessYear, currentItem }) => {
         onGuessYear={onGuessYear}
       />
       <style jsx>{`
+        div {
+          max-width:100%;
+          padding:0 3rem;
+        }
         img {
-          width: 400px;
+          width:40rem;
+          max-width:100%;
+          border-radius:0.3rem;
+          box-shadow:0 0.2rem 0.3rem rgba(0,0,0,0.6);
         }
       `}</style>
     </div>
