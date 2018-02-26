@@ -12,7 +12,7 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
       <Button
         btnText={"Click to start game"}
         onClick={() => onStartClick()}
-        btnClass={"primary"}
+        btnType={"primary"}
       />
       {(gameState.gameActive && !gameState.isFetching) &&
         <div>
