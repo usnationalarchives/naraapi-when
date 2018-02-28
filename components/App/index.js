@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Intro from '../Intro';
 import Button from '../form/Button';
 import Score from '../Score';
 import Slider from '../Slider';
@@ -8,12 +9,11 @@ import Timer from '../Timer';
 const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
   return (
     <div className="container">
-      <h1>When Am I?</h1>
-      <Button
-        btnText={"Click to start game"}
-        onClick={() => onStartClick()}
-        btnType={"primary"}
-      />
+      {(!gameState.gameActive) &&
+        <Intro
+          startGame={() => onStartClick()}
+        />
+      }
       {(gameState.gameActive && !gameState.isFetching) &&
         <div>
           <Timer
