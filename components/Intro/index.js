@@ -26,7 +26,7 @@ class Intro extends React.Component {
         }
         {(this.state.page === 2) &&
           <div>
-            <p>We'll show you an image.</p>
+            <p>We&apos;ll show you an image.</p>
             <p>You tell us what year it was taken.</p>
             <p>Guess as many years as you can in 90 seconds.</p>
             <p><em>Let's get started!</em></p>
