@@ -29,7 +29,7 @@ class Intro extends React.Component {
             <p>We&apos;ll show you an image.</p>
             <p>You tell us what year it was taken.</p>
             <p>Guess as many years as you can in 90 seconds.</p>
-            <p><em>Let's get started!</em></p>
+            <p><em>Let&apos;s get started!</em></p>
             <Button
               btnText={"Start Game"}
               onClick={() => this.props.startGame()}
