@@ -24,7 +24,7 @@ class Slider extends React.Component {
     return _src;
   }
 
-  render() {
+  componentWillMount() {
     const gameItems = this.state.items.map((gameItem, index) => 
       <Slide
         key={gameItem.naId}
@@ -36,9 +36,15 @@ class Slider extends React.Component {
         currentItem={index}
       />
     );
+    this.setState((prevState, props) => {
+      return {gameItems: gameItems};
+    })
+  }
+
+  render() {
     return (
       <div>
-        {gameItems[this.props.currentItem]}
+        {this.state.gameItems[this.props.currentItem]}
       </div>
     );
   }

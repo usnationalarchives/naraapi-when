@@ -10,9 +10,10 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
     <div className="container">
       <h1>When Am I?</h1>
       <Button
-        btnText={"Click to start game"}
+        btnText={'Click to start game'}
         onClick={() => onStartClick()}
-        btnType={"primary"}
+        btnRole={'afterText'}
+        btnColor={'blue'}
       />
       {(gameState.gameActive && !gameState.isFetching) &&
         <div>
