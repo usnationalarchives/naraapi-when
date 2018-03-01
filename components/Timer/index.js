@@ -51,7 +51,6 @@ class Timer extends React.Component {
   }
 
   render() {
-    console.log(2 * Math.PI * this.state.radius)
     return (
       <div>
         <span>{this.state.timeLeft}</span>
