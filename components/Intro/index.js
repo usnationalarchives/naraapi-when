@@ -7,8 +7,7 @@ class Intro extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1,
-      startGame: props.startGame
+      page: 1
     }
   }
 
@@ -33,7 +32,7 @@ class Intro extends React.Component {
             <p><em>Let&apos;s get started!</em></p>
             <Button
               btnText={"Start Game"}
-              onClick={() => this.state.startGame()}
+              onClick={() => this.props.startGame()}
               btnType={"primary"}
             />
           </div>
