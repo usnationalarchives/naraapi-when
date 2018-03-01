@@ -19,6 +19,7 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
           <Timer
             gameTime={gameState.gameTime}
             endGame={onEndGame}
+            size={50}
           />
           <Score score={gameState.score} />
           <Slider
