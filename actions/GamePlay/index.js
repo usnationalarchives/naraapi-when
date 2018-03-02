@@ -56,7 +56,7 @@ function getGameItems() {
   let apiRequest = 'https://catalog.archives.gov/api/v1?';
   apiRequest += 'resultTypes=item';
   apiRequest += '&description.item.generalRecordsTypeArray.generalRecordsType.naId_is=10035674';
-  apiRequest += '&rows=60';
+  apiRequest += '&rows=90';
   apiRequest += '&description.item.productionDateArray.proposableQualifiableDate.year=';
 
   return dispatch => {
