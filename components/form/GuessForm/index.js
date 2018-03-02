@@ -50,7 +50,7 @@ class GuessForm extends React.Component {
       } else {
         return {
           [name]: {
-            color: 'blue',
+            color: 'translucent',
             clicked: false
           }
         }
