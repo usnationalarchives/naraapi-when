@@ -1,10 +1,9 @@
 import React from 'react';
 
 import Intro from '../Intro';
+import Header from '../Header';
 import Button from '../form/Button';
-import Score from '../Score';
 import Slider from '../Slider';
-import Timer from '../Timer';
 
 const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
   return (
@@ -16,12 +15,12 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
       }
       {(gameState.gameActive && !gameState.isFetching) &&
         <div>
-          <Timer
+          <Header
             gameTime={gameState.gameTime}
             endGame={onEndGame}
             size={50}
+            score={gameState.score}
           />
-          <Score score={gameState.score} />
           <Slider
             itemData={gameState.data.opaResponse.results.result}
             currentItem={gameState.currentItem}

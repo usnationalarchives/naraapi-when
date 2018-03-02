@@ -68,6 +68,7 @@ class Timer extends React.Component {
         <style jsx>{`
             div {
               position: relative;
+              float:right;
             }
             span {
               position: absolute;
@@ -104,10 +105,12 @@ class Timer extends React.Component {
               height: ${this.state.size + 'px'};
             }
             span {
+              font-size:1.5rem;
+              font-weight:700;
               width: ${this.state.size + 'px'};
               height: ${this.state.size + 'px'};
               line-height: ${this.state.size + 'px'};
-              color: ${ this.state.lowTime ? '#fff' : '#fff' };
+              color: ${ this.state.lowTime ? '#132f50' : '#132f50;' };
             }
             svg circle {
             stroke-dasharray: ${Math.floor((2 * Math.PI * this.state.radius)) + 'px'};
