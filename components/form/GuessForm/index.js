@@ -77,6 +77,7 @@ class GuessForm extends React.Component {
   }
 
   getRandomYear(min, max, usedNumbers) {
+    
     const _min = Math.ceil(min);
     const _max = Math.floor(max);
 
@@ -84,7 +85,7 @@ class GuessForm extends React.Component {
     let _maxTries = 0;
     while(usedNumbers.includes(_newNumber) || _maxTries < 25) {
       _newNumber = Math.floor(Math.random() * (_max - _min + 1)) + _min;
-      _maxTries ++;
+      _maxTries++;
     }
     return _newNumber;
   }
@@ -93,8 +94,8 @@ class GuessForm extends React.Component {
     const _yearMin = Number(year) - 10;
     const _yearMax = Number(year) + 10;
     let _buttons = [];
-    const rightAnswer = Math.floor(Math.random() * (Math.floor(4) - Math.ceil(0) + 1)) + Math.ceil(0);
-    let _usedNumbers = [year];
+    const rightAnswer = Math.floor(Math.random() * (Math.floor(2) - Math.ceil(0) + 1)) + Math.ceil(0);
+    let _usedNumbers = [Number(year)];
     for (let i = 0; i < 4; i++) {
       let _buttonObject = {};
       if(i == rightAnswer) {
@@ -134,16 +135,7 @@ class GuessForm extends React.Component {
      })
     );
 
-    
     this.setState((prevState, props) => {return {slideButtons: slideButtons};});
-    
-    // slideButtons.forEach((btn) =>
-    //   btns.push({name: [btn.props.btnName], clicked: false, btnColor: 'white'})
-    // );
-    // this.setState((prevState, props) => {
-    //   return {slideBtns: btns };
-    // })
-    
   }
 
 
