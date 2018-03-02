@@ -17,9 +17,19 @@ class Intro extends React.Component {
       <div className={"intro-container state-"+this.state.page+" load-"+this.state.loadGame}>
         <section className={"text-section"}>
           <div className={"text-1"}>
-            <h1>How well<br />do you know<br />the picture<br />of America?</h1>
+            <img className={"nara"} src={"/static/nara-logo-blue.png"} alt={"National Archives"} />
+            <img className={"logo"} src={"/static/logo.png"} alt={"When Am I?"} />
+            <Button
+              btnText={"Start"}
+              onClick={() => this.setState({ page: 2 })}
+              btnRole={'afterTextWide'}
+              btnColor={'white'}
+            />
           </div>
           <div className={"text-2"}>
+            <h1>How well<br />do you know<br />the picture<br />of America?</h1>
+          </div>
+          <div className={"text-3"}>
             <p>We&apos;ll show you<br />an image.</p>
             <p>You tell us<br />what year it was taken.</p>
             <p>Guess as many years<br />as you can in 90 seconds.</p>
@@ -28,45 +38,78 @@ class Intro extends React.Component {
         </section>
         <section className={"button-section"}>
           <hr />
-          <button onClick={this.state.page === 1 ? () => this.setState({ page: 2 }) : () => this.setState({ loadGame: true }, () => this.props.startGame())}>
+          <button onClick={this.state.page === 2 ? () => this.setState({ page: 3 }) : () => this.setState({ loadGame: true }, () => this.props.startGame())}>
             <span>{this.state.page === 1 ? "Continue" : "Start Game"}</span>
           </button>
         </section>
+        <footer>
+          <img className={"nara-bottom"} src={"/static/nara-text-blue.png"} alt={"National Archives"} />
+        </footer>
+        <style jsx global>{`
+          body {
+            background-image:url('/static/tiles${this.state.page}.png');
+          }
+        `}</style>
         <style jsx>{`
           .intro-container {
             text-align:left;
             -webkit-animation:fadeIn 1s;
             animation:fadeIn 1s;
             position:relative;
-            width:200%;
+            width:300%;
+            left:0;
+            transition:left 1s;
           }
           .intro-container.state-2 {
-            -webkit-animation:slideLeft 1s forwards;
-            animation:slideLeft 1s forwards;
+            left:-100%;
+          }
+          .intro-container.state-3 {
+            left:-200%;
           }
 
           .text-section {
-            margin:8rem 0 0;
+            margin:4rem 0 0;
           }
-          .text-section div {
+          .text-section > div {
             box-sizing:border-box;
-            width:50%;
+            width:33.333333%;
             float:left;
             padding:2rem;
+          }
+          .text-1 {
+            text-align:center;
           }
           .text-section:after {
             content:'';
             clear:both;
             display:table;
           }
+          img {
+            display:block;
+            margin:0 auto;
+          }
+          .nara {
+            max-width:14rem;
+            margin-bottom:6rem;
+          }
+          .logo {
+            max-width:27rem;
+            margin-bottom:6rem;
+          }
           h1 {
             color:#132f50;
             font-weight:700;
-            font-size:3.6rem;
-            margin:0;
+            font-size:5rem;
+            line-height:1.2;
+            letter-spacing:-0.05rem;
+            margin:11rem 0 0;
+          }
+          .text-3 {
+            margin-top:6.5rem;
           }
           p {
-            font-size:2rem;
+            font-size:2.6rem;
+            line-height:1.2;
             font-weight:600;
             margin:0 0 1.5rem;
           }
@@ -76,17 +119,23 @@ class Intro extends React.Component {
           }
 
           .button-section {
+            box-sizing:border-box;
             position:relative;
-            height:4rem;
-            padding:0 10% 0 2rem;
+            top:-7rem;
+            padding:0 2rem;
+            transition:left 1s;
+            width:66.666666%;
+            float:right;
+            height:6.4rem;
           }
           hr {
             background:#fff;
             border:0;
-            height:0.3rem;
-            box-shadow:0 0.1rem 0.3rem rgba(0,0,0,0.3);
+            height:0.4rem;
+            box-shadow:0 0.1rem 0.3rem rgba(0,0,0,0.1);
             position:relative;
             top:50%;
+            margin:0 2rem;
           }
           button {
             background:#132f50;
@@ -95,8 +144,8 @@ class Intro extends React.Component {
             border-radius:50%;
             box-shadow:0 0.3rem 0.6rem rgba( 0, 0, 0, 0.4 );
             outline:none;
-            width:4rem;
-            height:4rem;
+            width:6.2rem;
+            height:6.2rem;
             top:0.2rem;
             position:absolute;
             -webkit-animation:buttonFlash 4s infinite;
@@ -112,9 +161,9 @@ class Intro extends React.Component {
           button::after {
             content:'';
             display:inline-block;
-            width:1rem;
-            height:1rem;
-            border:0.3rem solid #fff;
+            width:1.4rem;
+            height:1.4rem;
+            border:0.4rem solid #fff;
             border-left:0;
             border-top:0;
             transform:rotate(-45deg);
@@ -122,7 +171,7 @@ class Intro extends React.Component {
             margin-left:-0.5rem;
           }
 
-          .intro-container.state-2 button {
+          .intro-container.state-3 button {
             -webkit-animation:arrowSlide 1s forwards, buttonFlash 4s infinite;
             animation:arrowSlide 1s forwards, buttonFlash 4s infinite;
           }
@@ -136,6 +185,22 @@ class Intro extends React.Component {
             margin-left:0.0rem;
             -webkit-animation:buttonLoad 1s infinite;
             animation:buttonLoad 1s infinite;
+          }
+
+          .intro-container.state-1 footer {
+            opacity:0;
+          }
+          footer {
+            position:fixed;
+            bottom:4rem;
+            width:33.333333%;
+            left:33.333333%;
+            text-align:center;
+            opacity:1;
+            transition:opacity 1s;
+          }
+          .nara-bottom {
+            max-width:14.7rem;
           }
 
           @-webkit-keyframes fadeIn {
@@ -152,23 +217,6 @@ class Intro extends React.Component {
             }
             100% {
               opacity:100%;
-            }
-          }
-
-          @-webkit-keyframes slideLeft {
-            0% {
-              left:0;
-            }
-            100% {
-              left:-100%;
-            }
-          }
-          @keyframes slideLeft {
-            0% {
-              left:0;
-            }
-            100% {
-              left:-100%;
             }
           }
 
@@ -194,7 +242,7 @@ class Intro extends React.Component {
               background-color:#132f50;
             }
             75% {
-              background-color:#54a2bf;
+              background-color:#50739d;
             }
             100% {
               background-color:#132f50;
@@ -205,7 +253,7 @@ class Intro extends React.Component {
               background-color:#132f50;
             }
             75% {
-              background-color:#54a2bf;
+              background-color:#50739d;
             }
             100% {
               background-color:#132f50;

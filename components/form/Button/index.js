@@ -48,15 +48,27 @@ const Button = (
       btnStyle = {
         padding: [1.5 + 'rem', 4 + 'rem', 1.5 + 'rem', 4 + 'rem'],
         letterSpacing: 0.1 + 'rem',
-        fontWeight: 600,
+        fontWeight: 700,
         textTransform: 'uppercase'
+      }
+      break;
+    case 'afterTextWide':
+      btnStyle = {
+        padding: [1.5 + 'rem', 4 + 'rem', 1.5 + 'rem', 4 + 'rem'],
+        letterSpacing: 0.1 + 'rem',
+        fontWeight: 700,
+        minWidth: '26rem',
+        textTransform: 'uppercase',
+        after: {
+          content: '""',
+        }
       }
       break;
     case 'afterText':
       btnStyle = {
         padding: [1.5 + 'rem', 4 + 'rem', 1.5 + 'rem', 4 + 'rem'],
         letterSpacing: 0.1 + 'rem',
-        fontWeight: 600,
+        fontWeight: 700,
         textTransform: 'uppercase',
         after: {
           content: '""',
@@ -109,7 +121,7 @@ const Button = (
           border-left:0;
           border-top:0;
           transform:rotate(-45deg);
-          float:right;
+          margin-left:0.3rem;
           transition:border-color 0.2s;
         }
       `}</style>
@@ -143,10 +155,11 @@ const Button = (
           margin-bottom:${btnStyle.margin ? btnStyle.margin[2] : 0};
           margin-left:${btnStyle.margin ? btnStyle.margin[3] : 0};
           width:${btnStyle.width ? btnStyle.width : 'auto'};
-          font-size:${btnStyle.fontSize ? btnStyle.fontSize  + 'rem' : 1.3 + 'rem'};
+          font-size:${btnStyle.fontSize ? btnStyle.fontSize  + 'rem' : 1.7 + 'rem'};
           font-weight:${btnStyle.fontWeight ? btnStyle.fontWeight : 400};
           text-transform:${btnStyle.textTransform ? btnStyle.textTransform : 'auto'};
           letter-spacing: ${btnStyle.letterSpacing ? btnStyle.letterSpacing : 0};
+          min-width: ${btnStyle.minWidth ? btnStyle.minWidth : 0};
         }
         button::after {
           content:${btnStyle.after ? btnStyle.after.content : ''};
@@ -159,7 +172,7 @@ const Button = (
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   btnText: PropTypes.string.isRequired,
-  btnRole: PropTypes.oneOf(['arrow', 'tag', 'text', 'afterText', 'guess']).isRequired,
+  btnRole: PropTypes.oneOf(['arrow', 'tag', 'text', 'afterText', 'afterTextWide', 'guess']).isRequired,
   btnColor: PropTypes.oneOf(['blue', 'white', 'green', 'red']).isRequired,
   btnName: PropTypes.string,
   btnValue: PropTypes.string,
