@@ -32,6 +32,7 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
             currentItem={gameState.currentItem}
             onGuessYear={onGuessYear}
           />
+          <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
         </div>
       }
       <style jsx global>{`
@@ -56,6 +57,10 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
           max-width:40rem;
           margin:0 auto;
           overflow:hidden;
+        }
+        .nara-bottom {
+          margin-top:5rem;
+          max-width:14.7rem;
         }
       `}</style>
     </div>
