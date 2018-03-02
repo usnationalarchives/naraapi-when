@@ -30,6 +30,10 @@ const Button = (
     green: {
       backgroundColor: 'green',
       color: '#ffffff'
+    },
+    translucent: {
+      backgroundColor: 'rgba(255,255,255,.3)',
+      color: '#112e51'
     }
   }
 
@@ -160,7 +164,7 @@ Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   btnText: PropTypes.string.isRequired,
   btnRole: PropTypes.oneOf(['arrow', 'tag', 'text', 'afterText', 'guess']).isRequired,
-  btnColor: PropTypes.oneOf(['blue', 'white', 'green', 'red']).isRequired,
+  btnColor: PropTypes.oneOf(['blue', 'white', 'green', 'red', 'translucent']).isRequired,
   btnName: PropTypes.string,
   btnValue: PropTypes.string,
   clicked: PropTypes.bool
