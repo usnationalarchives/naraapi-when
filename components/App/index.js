@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 
 import Intro from '../Intro';
 import Header from '../Header';
@@ -8,6 +9,11 @@ import Slider from '../Slider';
 const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
   return (
     <div className="container">
+      <Head>
+        <title>When Am I?</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+
       {(!gameState.gameActive) &&
         <Intro
           startGame={() => onStartClick()}
@@ -26,6 +32,7 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
             currentItem={gameState.currentItem}
             onGuessYear={onGuessYear}
           />
+          <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
         </div>
       }
       <style jsx global>{`
@@ -35,20 +42,25 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
         }
         body {
           font-size:16px;
-          background:#0071bc;
           color:#fff;
           font-family:"Source Sans Pro", sans-serif;
           text-align:center;
           margin:0;
-          background:linear-gradient( to top right, #235692, #20bee4 );
+          background:url('/static/tiles1.png') #0071bc;
           background-size:cover;
+          background-position:top center;
+          transition:background-image 1s;
         }
         .container {
           width:100%;
+          min-height:100vh;
           max-width:40rem;
           margin:0 auto;
           overflow:hidden;
-          height:100vh;
+        }
+        .nara-bottom {
+          margin-top:5rem;
+          max-width:14.7rem;
         }
       `}</style>
     </div>

@@ -163,6 +163,11 @@ class GuessForm extends React.Component {
         />
         )
         }
+        <style jsx global>{`
+          body {
+            background-image:linear-gradient( to top right, #235692, #20bee4 );
+          }
+        `}</style>
         <style jsx>{`
           display:flex;
           flex-wrap:wrap;
