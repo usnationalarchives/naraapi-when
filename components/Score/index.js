@@ -5,7 +5,8 @@ const Score = ({score}) => {
 
   return (
     <div>
-      {score}
+      <img src={"/static/star.png"} alt={""} />
+      <span>{score}</span>
       <style jsx>{`
         div {
           float:left;
@@ -13,6 +14,16 @@ const Score = ({score}) => {
           font-weight:700;
           color:#132f50;
           font-size:1.8rem;
+          height:2.4rem;
+        }
+        img {
+          width:2.4rem;
+          height:2.4rem;
+          margin-right:0.8rem;
+        }
+        span {
+          line-height:2.4rem;
+          vertical-align:top;
         }
       `}</style>
     </div>
