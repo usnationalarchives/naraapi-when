@@ -4,7 +4,8 @@ export const BUILD_GAME = 'BUILD_GAME';
 export const END_GAME = 'END_GAME';
 export const REQUEST_GAMEDATA = 'REQUEST_DATA';
 export const LOAD_GAME = 'LOAD_GAME';
-export const GUESS_YEAR = 'GUESS_YEAR';
+export const IS_CORRECT = 'IS_CORRECT';
+export const NEXT_GUESS = 'NEXT_GUESS';
 
 export function startGame() {
   return dispatch => {
@@ -21,14 +22,33 @@ export function endGame() {
 }
 
 export function guessYear(year, guess, currentItem) {
-  const isCorrect = (year == guess) ? 25 : 0;
-  return {
-    type: GUESS_YEAR,
-    currentItem: currentItem + 1,
-    score: isCorrect
+  const guessCorrect = (year == guess) ? true : false;
+  let score = guessCorrect ? 25 : 0;
+  return dispatch => {
+    dispatch(isCorrect(score, guessCorrect));
+    setTimeout(
+      () => dispatch(nextGuess(currentItem)),
+      1000
+    );
+    
   }
 }
 
+function isCorrect(points, correct) {
+  return {
+    type: IS_CORRECT,
+    isCorrect: correct,
+    score: points
+  }
+}
+
+function nextGuess(currentItem) {
+  return {
+    type: NEXT_GUESS,
+    currentItem: currentItem + 1,
+    isCorrect: null,
+  }
+}
 
 function getGameItems() {
 

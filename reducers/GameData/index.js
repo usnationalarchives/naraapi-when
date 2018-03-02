@@ -3,7 +3,8 @@ import {
   END_GAME,
   REQUEST_GAMEDATA,
   LOAD_GAME,
-  GUESS_YEAR
+  IS_CORRECT,
+  NEXT_GUESS
 } from '../../actions/GamePlay';
 
 const intialState = {
@@ -39,11 +40,17 @@ function gameData(state = intialState, action) {
         data: action.data,
         gameActive: action.gameActive
       }
-    case GUESS_YEAR:
+    case IS_CORRECT:
+      return {
+        ...state,
+        // isCorrect: action.isCorrect,
+        score: state.score + action.score
+      }
+    case NEXT_GUESS:
       return {
         ...state,
         currentItem: action.currentItem,
-        score: state.score + action.score
+        //isCorrect: action.isCorrect
       }
     default:
       return state;

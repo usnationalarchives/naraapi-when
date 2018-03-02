@@ -10,11 +10,52 @@ class GuessForm extends React.Component {
     this.state = {
       year: props.year,
       naId: props.naId,
-      currentItem: props.currentItem
+      currentItem: props.currentItem,
+      onGuessYear: props.onGuessYear,
+      slideButtons: []
     };
     this.guess = this.guess.bind(this);
     this.getRandomYear = this.getRandomYear.bind(this);
     this.buildGuesses = this.buildGuesses.bind(this);
+    this.getColor = this.getColor.bind(this);
+  }
+
+  getColor(name, target, value) {
+    // if correct
+    if (this.state.year == value) {
+      // if clicked
+      if (target == name) {
+        return {
+          [name]: {
+            color: 'green',
+            clicked: true
+          }
+        }
+      } else {
+        return {
+          [name]: {
+            color: 'white',
+            clicked: false
+          }
+        }
+      }
+    } else {
+      if (target == name) {
+        return {
+          [name]: {
+            color: 'red',
+            clicked: true
+          }
+        }
+      } else {
+        return {
+          [name]: {
+            color: 'blue',
+            clicked: false
+          }
+        }
+      }
+    }
   }
 
   guess(event) {
@@ -23,7 +64,16 @@ class GuessForm extends React.Component {
     const target = event.target;
     const guess = target.value;
     const name = target.name;
-    this.props.onGuessYear(guess, this.state.year, this.state.currentItem);
+    
+    let slideBtns = this.state.slideButtons.map((button) => (
+      this.setState((prevState, props) => {
+        return this.getColor(button.name, name, button.value);
+      })
+      )
+    );
+
+    this.state.onGuessYear(guess, this.state.year, this.state.currentItem);
+    
   }
 
   getRandomYear(min, max, usedNumbers) {
@@ -50,14 +100,14 @@ class GuessForm extends React.Component {
       if(i == rightAnswer) {
         _buttonObject = {
           name: 'button_' + year,
-          value: year.toString()
+          value: year.toString(),
         };
       } else {
         const _btnYear = this.getRandomYear(_yearMin, _yearMax, _usedNumbers);
         _usedNumbers.push(_btnYear);
         _buttonObject = {
           name: 'button_' + _btnYear,
-          value: _btnYear.toString()
+          value: _btnYear.toString(),
         };
       }
 
@@ -69,22 +119,50 @@ class GuessForm extends React.Component {
     }
     return _buttons;
   }
-
-  render() {
+  // Create an onchange function that watches for the click. When clicked, update that buttons clicked prop to true and trigger color change
+  componentWillMount() {
+    let btns = [];
     const slideButtons = this.buildGuesses(this.state.year).map((button) =>
-      <Button
-        key={button.name}
-        btnName={button.name}
-        btnText={button.value}
-        btnValue={button.value}
-        onClick={this.guess}
-        btnType={'choice'}
-      />
+     ({
+       name: button.name,
+       text: button.text,
+       value: button.value,
+       onClick: this.guess,
+       role: 'guess',
+       color: 'white',
+       clicked: false
+     })
     );
 
+    
+    this.setState((prevState, props) => {return {slideButtons: slideButtons};});
+    
+    // slideButtons.forEach((btn) =>
+    //   btns.push({name: [btn.props.btnName], clicked: false, btnColor: 'white'})
+    // );
+    // this.setState((prevState, props) => {
+    //   return {slideBtns: btns };
+    // })
+    
+  }
+
+
+  render() {
     return (
-      <form>
-        {slideButtons}
+      <form id={'form_' + this.state.currentItem}>
+        {this.state.slideButtons.map((button) =>
+          <Button
+          key={button.name}
+          btnName={button.name}
+          btnText={button.value}
+          btnValue={button.value}
+          onClick={this.guess}
+          btnRole={'guess'}
+          clicked={this.state[button.name] ? this.state[button.name].clicked : false}
+          btnColor={this.state[button.name] ? this.state[button.name].color : 'white'}
+        />
+        )
+        }
         <style jsx>{`
           display:flex;
           flex-wrap:wrap;
