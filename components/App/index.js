@@ -40,11 +40,16 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
           color:#fff;
           font-family:"Source Sans Pro", sans-serif;
           text-align:center;
+          margin:0;
+          background:linear-gradient( to top right, #235692, #20bee4 );
+          background-size:cover;
         }
         .container {
           width:100%;
           max-width:40rem;
           margin:0 auto;
+          overflow:hidden;
+          height:100vh;
         }
       `}</style>
     </div>
