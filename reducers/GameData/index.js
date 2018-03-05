@@ -9,6 +9,7 @@ import {
 
 const intialState = {
   gameActive: false,
+  gameOver: false,
   timeLeft: 0,
   isFetching: false
 };
@@ -25,7 +26,8 @@ function gameData(state = intialState, action) {
     case END_GAME:
       return {
         ...state,
-        gameActive: action.gameActive
+        gameActive: action.gameActive,
+        gameOver: action.gameOver
       }
     case REQUEST_GAMEDATA:
       return {

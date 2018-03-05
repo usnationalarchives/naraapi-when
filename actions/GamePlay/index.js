@@ -17,7 +17,8 @@ export function startGame() {
 export function endGame() {
   return {
     type: END_GAME,
-    gameActive: false
+    gameActive: false,
+    gameOver: true
   }
 }
 
@@ -30,7 +31,7 @@ export function guessYear(year, guess, currentItem) {
       () => dispatch(nextGuess(currentItem)),
       1000
     );
-    
+
   }
 }
 
