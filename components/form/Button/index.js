@@ -11,7 +11,7 @@ const Button = (
     clicked }) => {
 
   let btnStyle;
-  
+
   const color = {
     blue: {
       backgroundColor: '#112e51',
@@ -40,12 +40,12 @@ const Button = (
   switch (btnRole) {
     case 'arrow':
       btnStyle = {
-        
+
       }
       break;
     case 'tag':
       btnStyle = {
-        
+
       }
       break;
     case 'text':
@@ -68,6 +68,18 @@ const Button = (
         }
       }
       break;
+      case 'afterTextNarrow':
+        btnStyle = {
+          padding: [1 + 'rem', 1.5 + 'rem', 1 + 'rem', 1.5 + 'rem'],
+          letterSpacing: 0.1 + 'rem',
+          fontWeight: 700,
+          width: 45 + '%',
+          textTransform: 'uppercase',
+          after: {
+            content: '""',
+          }
+        }
+        break;
     case 'afterText':
       btnStyle = {
         padding: [1.5 + 'rem', 4 + 'rem', 1.5 + 'rem', 4 + 'rem'],
@@ -97,8 +109,8 @@ const Button = (
   }
 
   return(
-    <button 
-      onClick={onClick} 
+    <button
+      onClick={onClick}
       value={btnValue}
       name={btnName}>
       {btnText}
