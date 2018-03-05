@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Score from '../Score';
 import Timer from '../Timer';
 
-const Header = ({ gameTime, endGame, size, score, scoreType }) => {
+const Header = ({ gameTime, endGame, size, score}) => {
   return (
     <div>
       <Timer
@@ -15,6 +15,7 @@ const Header = ({ gameTime, endGame, size, score, scoreType }) => {
       <Score
         score={score}
         scoreType={'runningScore'}
+        icon={true}
       />
       <style jsx>{`
         div {
@@ -35,7 +36,6 @@ Header.propTypes = {
   endGame: PropTypes.func.isRequired,
   size: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
-  scoreType: PropTypes.oneOf(['runningScore', 'finalScore']).isRequired
 };
 
 export default Header;

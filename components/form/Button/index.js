@@ -188,7 +188,7 @@ const Button = (
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   btnText: PropTypes.string.isRequired,
-  btnRole: PropTypes.oneOf(['arrow', 'tag', 'text', 'afterText', 'afterTextWide', 'guess']).isRequired,
+  btnRole: PropTypes.oneOf(['arrow', 'tag', 'text', 'afterText', 'afterTextWide', 'afterTextNarrow', 'guess']).isRequired,
   btnColor: PropTypes.oneOf(['blue', 'white', 'green', 'red', 'translucent']).isRequired,
   btnName: PropTypes.string,
   btnValue: PropTypes.string,

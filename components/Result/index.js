@@ -11,12 +11,13 @@ const Result = ({score, scoreType}) => {
       <Score
         score={score}
         scoreType={'finalScore'}
+        icon={false}
       />
       <p><em>Great Job!</em></p>
       <p className={"cta"}>Push yourself even further as a citizen activist.</p>
       <Button
         btnText={"Learn More"}
-        onClick={() => window.location = "https://catalog.archives.gov/"}
+        onClick={() => window.open("https://catalog.archives.gov/", "_blank")}
         btnRole={'afterTextWide'}
         btnColor={'blue'}
       />

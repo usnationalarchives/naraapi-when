@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Score = ({score, scoreType}) => {
+const Score = ({score, scoreType, icon}) => {
 
   let scoreStyle;
 
@@ -22,7 +22,10 @@ const Score = ({score, scoreType}) => {
         fontWeight: '700',
         color: '#ffffff',
         fontSize: 9 + 'rem',
-        height: 'auto'
+        height: 'auto',
+        span: {
+          lineHeight: 'inherit'
+        }
       }
       break;
     default:
@@ -34,8 +37,20 @@ const Score = ({score, scoreType}) => {
 
   return (
     <div>
-      <img src={"/static/star.png"} alt={""} />
+      {icon && 
+        <img src={"/static/star.png"} alt={""} />
+      }
       <span>{score}</span>
+      <style jsx>{`
+        img {
+          width:2.4rem;
+          height:2.4rem;
+          margin-right:0.8rem;
+        }
+        span {
+          vertical-align:top;
+        }
+      `}</style>
       <style jsx>{`
         div {
           float:${scoreStyle.float ? scoreStyle.float : 'none'};
@@ -45,14 +60,8 @@ const Score = ({score, scoreType}) => {
           font-size:${scoreStyle.fontSize ? scoreStyle.fontSize : 0};
           height:${scoreStyle.height ? scoreStyle.height : 'auto'};
         }
-        img {
-          width:2.4rem;
-          height:2.4rem;
-          margin-right:0.8rem;
-        }
         span {
-          line-height:2.4rem;
-          vertical-align:top;
+          line-height:${scoreStyle.span ? scoreStyle.span.lineHeight : '2.4rem'};
         }
       `}</style>
     </div>
@@ -61,7 +70,8 @@ const Score = ({score, scoreType}) => {
 
 Score.propTypes = {
   score: PropTypes.number.isRequired,
-  scoreType: PropTypes.oneOf(['runningScore', 'finalScore']).isRequired
+  scoreType: PropTypes.oneOf(['runningScore', 'finalScore']).isRequired,
+  icon: PropTypes.bool.isRequired
 }
 
 export default Score;
