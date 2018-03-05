@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Intro from '../Intro';
 import Header from '../Header';
 import Button from '../form/Button';
+import Result from '../Result';
 import Slider from '../Slider';
 
 const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
@@ -14,7 +15,7 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      {(!gameState.gameActive) &&
+      {(!gameState.gameActive && !gameState.gameOver) &&
         <Intro
           startGame={() => onStartClick()}
         />
@@ -31,6 +32,14 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
             itemData={gameState.data.opaResponse.results.result}
             currentItem={gameState.currentItem}
             onGuessYear={onGuessYear}
+          />
+          <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
+        </div>
+      }
+      {(!gameState.gameActive && gameState.gameOver) &&
+        <div>
+          <Result
+            score={gameState.score}
           />
           <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
         </div>
