@@ -4,13 +4,19 @@ import App from '../../components/App';
 import {
   startGame,
   endGame,
-  guessYear
+  guessYear,
+  seeResults
 } from '../../actions/GamePlay';
+
+import {
+  tagItem,
+  logIn
+} from '../../actions/NaraActions';
 
 const mapStateToProps = state => {
   return {
     gameState: state.gameData,
-    currentItem: state.currentItem
+    userState: state.userData
   }
 };
 
@@ -24,6 +30,15 @@ const mapDispatchToProps = dispatch => {
     },
     onGuessYear: (year, guess, currentItem) => {
       dispatch(guessYear(year, guess, currentItem))
+    },
+    onTagItem: () => {
+      dispatch(tagItem())
+    },
+    onLogIn: (username, token) => {
+      dispatch(logIn(username, token))
+    },
+    onSeeResults: () => {
+      dispatch(seeResults())
     }
   }
 };

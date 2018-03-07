@@ -4,14 +4,20 @@ import {
   REQUEST_GAMEDATA,
   LOAD_GAME,
   IS_CORRECT,
-  NEXT_GUESS
+  NEXT_GUESS,
+  SEE_RESULTS
 } from '../../actions/GamePlay';
+
+import {
+  TAG_ITEM
+} from '../../actions/NaraActions';
 
 const intialState = {
   gameActive: false,
   gameOver: false,
   timeLeft: 0,
-  isFetching: false
+  isFetching: false,
+  seeResults: false
 };
 
 function gameData(state = intialState, action) {
@@ -53,6 +59,16 @@ function gameData(state = intialState, action) {
         ...state,
         currentItem: action.currentItem,
         //isCorrect: action.isCorrect
+      }
+    case TAG_ITEM:
+      return {
+        ...state,
+        score: state.score + action.score
+      }
+    case SEE_RESULTS:
+      return {
+        ...state,
+        seeResults: true
       }
     default:
       return state;

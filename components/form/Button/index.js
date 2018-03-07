@@ -24,11 +24,11 @@ const Button = (
       color: '#112e51'
     },
     red: {
-      backgroundColor: 'red',
+      backgroundColor: '#e31c3d',
       color: '#ffffff'
     },
     green: {
-      backgroundColor: 'green',
+      backgroundColor: '#4aa564',
       color: '#ffffff'
     },
     translucent: {

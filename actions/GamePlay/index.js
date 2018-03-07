@@ -6,6 +6,7 @@ export const REQUEST_GAMEDATA = 'REQUEST_DATA';
 export const LOAD_GAME = 'LOAD_GAME';
 export const IS_CORRECT = 'IS_CORRECT';
 export const NEXT_GUESS = 'NEXT_GUESS';
+export const SEE_RESULTS = 'SEE_RESULTS';
 
 export function startGame() {
   return dispatch => {
@@ -62,7 +63,7 @@ function getGameItems() {
 
   return dispatch => {
     dispatch(requestGameData());
-    return fetch(apiRequest + '1911')
+    return fetch(apiRequest + '1921')
       .then(response => response.json())
       .then(json => dispatch(loadGame(json)))
   }
@@ -81,7 +82,7 @@ function loadGame(data) {
 function buildGameState() {
   return {
     type: BUILD_GAME,
-    gameTime: 90,
+    gameTime: 10,
     currentItem: 0,
     score: 0
   }
@@ -91,5 +92,11 @@ function requestGameData() {
   return {
     type: REQUEST_GAMEDATA,
     isFetching: true
+  }
+}
+
+export function seeResults() {
+  return {
+    type: SEE_RESULTS
   }
 }

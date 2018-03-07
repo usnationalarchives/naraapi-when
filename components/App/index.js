@@ -6,15 +6,20 @@ import Header from '../Header';
 import Button from '../form/Button';
 import Result from '../Result';
 import Slider from '../Slider';
+import Bonus from '../Bonus';
+import LoginForm from '../form/LoginForm';
 
-const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
+const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTagItem, onLogIn, onSeeResults }) => {
   return (
     <div className="container">
       <Head>
         <title>When Am I?</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-
+      {(!userState.token && !userState.loggedIn) &&
+        <LoginForm onLogIn={onLogIn} />
+      }
+      
       {(!gameState.gameActive && !gameState.gameOver) &&
         <Intro
           startGame={() => onStartClick()}
@@ -36,7 +41,19 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
           <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
         </div>
       }
-      {(!gameState.gameActive && gameState.gameOver) &&
+      {(!gameState.gameActive && gameState.gameOver && !gameState.seeResults) &&
+        <div>
+          <Bonus 
+            itemData={gameState.data.opaResponse.results.result}
+            currentItem={gameState.currentItem}
+            onTagItem={onTagItem}
+            onSeeResults={onSeeResults}
+            token={userState.token}
+          />
+          <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
+        </div>
+      }
+      {(gameState.gameOver && gameState.seeResults) &&
         <div>
           <Result
             score={gameState.score}
@@ -44,6 +61,7 @@ const App = ({ gameState, onStartClick, onEndGame, onGuessYear }) => {
           <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
         </div>
       }
+
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600,700');
         html {
