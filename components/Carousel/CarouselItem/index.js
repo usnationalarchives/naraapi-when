@@ -42,7 +42,7 @@ class CarouselItem extends React.Component {
 
   render() {
     return(
-      <li>
+    <li>
       <div>
         <img src={this.props.image} alt={this.props.title} />
         <button onClick={() => {this.setState({editMode: true, descriptionMode: false})}}>Edit</button>
@@ -73,8 +73,11 @@ class CarouselItem extends React.Component {
         order: ${this.props.order};
         background: green;
         flex: 1 0 100%;
+        /*
         flex-basis: 80%;
         margin-right: 20px;
+        height:0;
+        padding-bottom:100%; */
        }
        img {
          width: 100%;

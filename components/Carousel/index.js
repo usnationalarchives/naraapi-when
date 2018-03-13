@@ -12,7 +12,7 @@ class Carousel extends React.Component {
     this.state = {
       position: 0,
       sliding: false,
-      slideTransform: 'translateX(calc(-70% - 20px))'
+      slideTransform: 'translateX(calc(-100%))'
     }
     this.getOrder = this.getOrder.bind(this);
     this.doSliding = this.doSliding.bind(this);
@@ -55,7 +55,7 @@ class Carousel extends React.Component {
       sliding: true,
       position,
       direction,
-      slideTransform: (direction === 'prev') ? 'translateX(calc(2 * (-70% - 20px)))' : 'translateX(calc(-70% - 20px))'
+      slideTransform: (direction === 'prev') ? 'translateX(calc(2 * (-100%)))' : 'translateX(calc(-100%))'
     });
     setTimeout(() => {
       this.setState({
@@ -65,8 +65,8 @@ class Carousel extends React.Component {
   }
   
   calcTransform() {
-    if (!this.state.sliding) return 'translateX(calc(-80% - 20px))'
-    if (this.state.direction === 'prev') return 'translateX(calc(2 * (-80% - 20px)))'
+    if (!this.state.sliding) return 'translateX(calc(-100%))'
+    if (this.state.direction === 'prev') return 'translateX(calc(2 * (-100%)))'
     return 'translateX(0%)'
   };
 
@@ -76,7 +76,7 @@ class Carousel extends React.Component {
     } else {
       this.prevSlide()
     }
-  }, 500, { trailing: false })
+  }, 200, { trailing: false })
 
 
   render() {
@@ -85,6 +85,7 @@ class Carousel extends React.Component {
     return (
     <div>
       <h2>{this.props.title}</h2>
+      <p>{this.props.text}</p>
       <Swipeable
         onSwipingLeft={ () => this.handleSwipe(true) }
         onSwipingRight={ () => this.handleSwipe() }
@@ -119,11 +120,26 @@ class Carousel extends React.Component {
           margin: 0 0 20px 20px;
           list-style: none;
         }
+        h2 {
+          font-size:2.6rem;
+          text-transform:uppercase;
+          text-shadow:0.05rem 0.05rem 0.1rem rgba( 0, 0, 0, 0.3 );
+          margin-bottom:1rem;
+        }
+        p {
+          font-size:1.8rem;
+          max-width:25rem;
+          margin:0 auto;
+          line-height:1.3;
+          margin-bottom:3rem;
+        }
       `}</style>
       <style jsx>{`
         ol {
           transition: ${this.state.sliding ? 'none' : 'transform 1s ease'};
           transform: ${transformOffset};
+          margin:0;
+          padding:0;
         }
       `}</style>
     </div>
