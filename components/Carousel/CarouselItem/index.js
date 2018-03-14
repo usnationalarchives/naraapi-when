@@ -41,11 +41,12 @@ class CarouselItem extends React.Component {
   }
 
   render() {
+    console.log( this.props );
     return(
     <li>
-      <div>
+      <button onClick={() => {this.setState({editMode: true, descriptionMode: false})}}>Edit</button>
+      <div className={'image-container'}>
         <img src={this.props.image} alt={this.props.title} />
-        <button onClick={() => {this.setState({editMode: true, descriptionMode: false})}}>Edit</button>
         {(this.state.editMode || this.state.descriptionMode) && 
           <button onClick={() => {this.setState({editMode: true, descriptionMode: !this.state.descriptionMode})}}>Description</button>
         }
@@ -70,17 +71,58 @@ class CarouselItem extends React.Component {
       </div>
       <style jsx>{`
        li {
+        box-sizing:border-box;
         order: ${this.props.order};
-        background: green;
-        flex: 1 0 100%;
-        /*
-        flex-basis: 80%;
-        margin-right: 20px;
-        height:0;
-        padding-bottom:100%; */
+        // background: green;
+        flex: 0 0 50%;
+        padding:0 1rem 1rem;
+        overflow:visible;
+        position:relative;
+
+       }
+       div.image-container {
+        overflow:hidden;
+        height:100%;
+        position:relative;
        }
        img {
-         width: 100%;
+        width:auto;
+        height:auto;
+        max-width:200%;
+        object-fit:cover;
+        position:absolute;
+        top:0;
+        right:-100rem;
+        bottom:0;
+        left:-100rem;
+        margin:-2rem auto 0;
+       }
+       button {
+        position:absolute;
+        z-index:2;
+        bottom:0.2rem;
+        right:0;
+        width:3.5rem;
+        height:3.5rem;
+        border:0;
+        background:#fff;
+        text-indent:-999rem;
+        overflow:hidden;
+        border-radius:50%;
+        box-shadow:0.1rem 0.1rem 0.2rem rgba(0,0,0,0.7);
+       }
+       button:after {
+         content:'';
+         position:absolute;
+         color:#000;
+         width:3.5rem;
+         height:3.5rem;
+         display:block;
+         background:url('/static/pencil-blue.png') no-repeat;
+         background-size:1.6rem;
+         background-position:center;
+         top:0;
+         left:0;
        }
       `}</style>
       

@@ -25,14 +25,18 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
           startGame={() => onStartClick()}
         />
       }
+
+      {(!gameState.isFetching && !gameState.seeResults && (gameState.gameActive || gameState.gameOver)) &&
+        <Header
+          gameTime={gameState.gameTime}
+          endGame={onEndGame}
+          size={50}
+          score={gameState.score}
+        />
+      }
+
       {(gameState.gameActive && !gameState.isFetching) &&
         <div>
-          <Header
-            gameTime={gameState.gameTime}
-            endGame={onEndGame}
-            size={50}
-            score={gameState.score}
-          />
           <Slider
             itemData={gameState.data.opaResponse.results.result}
             currentItem={gameState.currentItem}
@@ -41,6 +45,7 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
           <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
         </div>
       }
+
       {(!gameState.gameActive && gameState.gameOver && !gameState.seeResults) &&
         <div>
           <Bonus 
@@ -53,6 +58,7 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
           <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
         </div>
       }
+
       {(gameState.gameOver && gameState.seeResults) &&
         <div>
           <Result

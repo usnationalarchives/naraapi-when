@@ -12,7 +12,6 @@ class Carousel extends React.Component {
     this.state = {
       position: 0,
       sliding: false,
-      slideTransform: 'translateX(calc(-100%))'
     }
     this.getOrder = this.getOrder.bind(this);
     this.doSliding = this.doSliding.bind(this);
@@ -51,11 +50,11 @@ class Carousel extends React.Component {
   }
 
   doSliding(direction, position) {
+    console.log( 'doSliding' );
     this.setState({
       sliding: true,
       position,
       direction,
-      slideTransform: (direction === 'prev') ? 'translateX(calc(2 * (-100%)))' : 'translateX(calc(-100%))'
     });
     setTimeout(() => {
       this.setState({
@@ -65,8 +64,8 @@ class Carousel extends React.Component {
   }
   
   calcTransform() {
-    if (!this.state.sliding) return 'translateX(calc(-100%))'
-    if (this.state.direction === 'prev') return 'translateX(calc(2 * (-100%)))'
+    if (!this.state.sliding) return 'translateX(calc(-50%))'
+    if (this.state.direction === 'prev') return 'translateX(calc(2 * (-50%)))'
     return 'translateX(0%)'
   };
 
@@ -76,48 +75,66 @@ class Carousel extends React.Component {
     } else {
       this.prevSlide()
     }
-  }, 200, { trailing: false })
-
+  }, 500, { trailing: false })
 
   render() {
-
     let transformOffset = this.calcTransform();
     return (
     <div>
       <h2>{this.props.title}</h2>
       <p>{this.props.text}</p>
+      
       <Swipeable
         onSwipingLeft={ () => this.handleSwipe(true) }
         onSwipingRight={ () => this.handleSwipe() }
       >
-      <ol>
-        {this.props.children.map((child, index) => (
-          <CarouselItem 
-            key={index}
-            image={child.img}
-            title={child.slideTitle}
-            order={this.getOrder(index)}
-            publicContrib={child.publicContrib}
-            naId={child.naId}
-            year={child.year}
-            scope={child.scope}
-            onTagItem={child.onTagItem}
-            token={child.token}
-          />
-        ))}
-        
-      </ol>
+        <section>
+          <ol>
+            {this.props.children.map((child, index) => (
+              <CarouselItem 
+                key={index}
+                image={child.img}
+                title={child.slideTitle}
+                order={this.getOrder(index)}
+                publicContrib={child.publicContrib}
+                naId={child.naId}
+                year={child.year}
+                scope={child.scope}
+                onTagItem={child.onTagItem}
+                token={child.token}
+              />
+            ))}
+          </ol>
+        </section>
       </Swipeable>
+     
       <button onClick={() => this.prevSlide()}>Prev</button>
       <button onClick={() => this.nextSlide()}>Next</button>
       <style jsx>{`
         div {
           width: 100%;
           overflow: hidden;
+          position:relative;
+          margin-bottom:5rem;
+        }
+        section {
+          height:0;
+          padding-bottom:50%;
+          overflow:hidden;
+          position:relative;
+          margin-bottom:5rem;
         }
         ol {
+          transition: ${this.state.sliding ? 'none' : 'transform 200ms ease'};
+          transform: ${transformOffset};
           display: flex;
-          margin: 0 0 20px 20px;
+          margin: 0;
+          padding: 0;
+          position:absolute;
+          left:-25%;
+          right:25%;  
+          top:0;
+          bottom:0;
           list-style: none;
         }
         h2 {
@@ -134,16 +151,8 @@ class Carousel extends React.Component {
           margin-bottom:3rem;
         }
       `}</style>
-      <style jsx>{`
-        ol {
-          transition: ${this.state.sliding ? 'none' : 'transform 1s ease'};
-          transform: ${transformOffset};
-          margin:0;
-          padding:0;
-        }
-      `}</style>
     </div>
-    );//transform: ${this.state.sliding ? 'translateX(calc(-80% - 20px))' : 'translateX(0%)'}
+    );
   }
 }
 
