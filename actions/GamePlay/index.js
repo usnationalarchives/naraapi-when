@@ -58,12 +58,13 @@ function getGameItems() {
   let apiRequest = 'https://catalog.archives.gov/api/v1?';
   apiRequest += 'resultTypes=item';
   apiRequest += '&description.item.generalRecordsTypeArray.generalRecordsType.naId_is=10035674';
-  apiRequest += '&rows=90';
-  apiRequest += '&description.item.productionDateArray.proposableQualifiableDate.year=';
-
+  apiRequest += '&rows=60';
+  apiRequest += '&objects.object.file.@mime_is=image/jpeg'
+  apiRequest += '&exists=description.item.productionDateArray.proposableQualifiableDate.year';
+  apiRequest += '&offset=' + Math.floor(Math.random() * 1000);
   return dispatch => {
     dispatch(requestGameData());
-    return fetch(apiRequest + '1921')
+    return fetch(apiRequest)
       .then(response => response.json())
       .then(json => dispatch(loadGame(json)))
   }
@@ -82,7 +83,7 @@ function loadGame(data) {
 function buildGameState() {
   return {
     type: BUILD_GAME,
-    gameTime: 10,
+    gameTime: 60,
     currentItem: 0,
     score: 0
   }
