@@ -40,20 +40,36 @@ class CarouselItem extends React.Component {
     })
   }
 
+  slideClass() {
+    if ( this.state.editMode || this.state.descriptionMode ) {
+      return 'current-slide active-slide';
+    }
+
+    if ( this.props.order === 2 ) {
+      return 'current-slide';
+    } else if ( this.props.order === 1 ) {
+      return 'prev-slide';
+    } else if( this.props.order === 3 ) {
+      return 'next-slide';
+    } else {
+      return 'hidden-slide';
+    }
+  }
+
   render() {
     console.log( this.props );
     return(
-    <li>
-      <button onClick={() => {this.setState({editMode: true, descriptionMode: false})}}>Edit</button>
+    <li className={this.slideClass()}>
+      <button className={'edit-button'} onClick={() => {this.setState({editMode: !this.state.editMode, descriptionMode: false})}}>Edit</button>
       <div className={'image-container'}>
         <img src={this.props.image} alt={this.props.title} />
         {(this.state.editMode || this.state.descriptionMode) && 
-          <button onClick={() => {this.setState({editMode: true, descriptionMode: !this.state.descriptionMode})}}>Description</button>
+          <button className={'desc-button'} onClick={() => {this.setState({editMode: true, descriptionMode: !this.state.descriptionMode})}}>Description</button>
         }
       </div>
       <div>
         {(this.state.editMode && !this.state.descriptionMode) && 
-          <div>
+          <div className={'tags'}>
             {this.state.tags.map((tag, index) => (
               <p key={index}>{tag}</p>
             ))}
@@ -61,14 +77,26 @@ class CarouselItem extends React.Component {
           </div>
         }
         {(this.state.editMode && this.state.descriptionMode) && 
-          <div>
+          <div className={'desc'}>
             <p>Year: {this.props.year}</p>
             <p>Title: {this.props.title}</p>
             <p>Description: {this.props.scope}</p>
           </div>
         }
-        
       </div>
+      <style jsx global>{`
+        body {
+          background-image:linear-gradient( to bottom left, #235692, #20bee4 );
+        }
+        section {
+          transition:padding 200ms;
+          overflow:${this.state.editMode ? 'visible !important' : 'hidden'};
+        }
+        section > ol {
+          left:${this.state.editMode ? '-35% !important' : 'inherit'};
+          right:${this.state.editMode ? '35% !important' : 'inherit'};
+        }
+      `}</style>
       <style jsx>{`
        li {
         box-sizing:border-box;
@@ -78,12 +106,19 @@ class CarouselItem extends React.Component {
         padding:0 1rem 1rem;
         overflow:visible;
         position:relative;
-
+       }
+       li.active-slide {
+         flex:0 0 70%;
        }
        div.image-container {
         overflow:hidden;
-        height:100%;
+        height:${this.state.editMode ? '100%' : '80%'};
         position:relative;
+        border-radius:0.5rem;
+        box-shadow:0 0.4rem 1rem rgba(0,0,0,0.4);
+       }
+       li:not(.active-slide):not(.current-slide) div.image-container {
+         height:80%;
        }
        img {
         width:auto;
@@ -96,8 +131,19 @@ class CarouselItem extends React.Component {
         bottom:0;
         left:-100rem;
         margin:-2rem auto 0;
+        transition:width 200ms, height 100ms;
+       }
+       li.active-slide img {
+        width: 100%;
+        height: auto;
+        left: 0;
+        right: 0;
+        margin: 0;
+        bottom: initial;
+        object-fit:initial;
        }
        button {
+        display: ${this.props.order === 2 ? 'block' : 'none'};
         position:absolute;
         z-index:2;
         bottom:0.2rem;

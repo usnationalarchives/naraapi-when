@@ -48,8 +48,8 @@ class Bonus extends React.Component {
         </Carousel>
         <Button
           btnName={'see_results'}
-          btnText={'Done'}
-          btnValue={'Done'}
+          btnText={'Next'}
+          btnValue={'Next'}
           onClick={this.props.onSeeResults}
           btnRole={'afterTextWide'}
           btnColor={'blue'}

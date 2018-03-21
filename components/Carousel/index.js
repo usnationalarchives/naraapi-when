@@ -26,11 +26,25 @@ class Carousel extends React.Component {
     const {children} = this.props;
     const numItems = children.length || 1;
 
+    let order = 0;
+
     if (itemIndex - position < 0) {
-      return numItems - Math.abs(itemIndex - position);
+      order = numItems - Math.abs(itemIndex - position);
+    } else {
+      order = itemIndex - position;
     }
 
-    return itemIndex - position;
+    // shift by 2 to display the first image at start
+    if ( order === ( numItems - 1 ) ) {
+      order = 1;
+    } else if ( order === ( numItems - 2 ) ) {
+      order = 0;
+    } else {
+      order = order + 2;
+    }
+
+    return order;
+
   }
 
   nextSlide() {
@@ -119,7 +133,7 @@ class Carousel extends React.Component {
         }
         section {
           height:0;
-          padding-bottom:50%;
+          padding-bottom:65%;
           overflow:hidden;
           position:relative;
           margin-bottom:5rem;
