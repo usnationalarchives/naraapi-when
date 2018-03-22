@@ -45,9 +45,26 @@ const Button = (
       break;
     case 'tag':
       btnStyle = {
-
+        background:'#fff',
+        borderRadius:'4rem',
+        color:'#112e51',
+        fontSize:1.4 + 'rem',
+        textTransform:'uppercase',
+        fontWeight:600,
+        padding:[1+'rem', 2+'rem', 1+'rem', 2+'rem'],
+        margin:'1rem',
+        letterSpacing:0.1+'rem'
       }
       break;
+    case 'secondary':
+      btnStyle = {
+        padding: [1.3 + 'rem', 2.5 + 'rem', 1.3 + 'rem', 2.5 + 'rem'],
+        letterSpacing: 0.1 + 'rem',
+        fontWeight: 400,
+        textTransform: 'uppercase',
+        fontSize:1.4 + 'rem'
+      }
+    break;
     case 'text':
       btnStyle = {
         padding: [1.5 + 'rem', 4 + 'rem', 1.5 + 'rem', 4 + 'rem'],
@@ -171,7 +188,7 @@ const Button = (
           margin-bottom:${btnStyle.margin ? btnStyle.margin[2] : 0};
           margin-left:${btnStyle.margin ? btnStyle.margin[3] : 0};
           width:${btnStyle.width ? btnStyle.width : 'auto'};
-          font-size:${btnStyle.fontSize ? btnStyle.fontSize  + 'rem' : 1.7 + 'rem'};
+          font-size:${btnStyle.fontSize ? btnStyle.fontSize : 1.7 + 'rem'};
           font-weight:${btnStyle.fontWeight ? btnStyle.fontWeight : 400};
           text-transform:${btnStyle.textTransform ? btnStyle.textTransform : 'auto'};
           letter-spacing: ${btnStyle.letterSpacing ? btnStyle.letterSpacing : 0};
@@ -188,7 +205,7 @@ const Button = (
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   btnText: PropTypes.string.isRequired,
-  btnRole: PropTypes.oneOf(['arrow', 'tag', 'text', 'afterText', 'afterTextWide', 'afterTextNarrow', 'guess']).isRequired,
+  btnRole: PropTypes.oneOf(['arrow', 'tag', 'text', 'secondary', 'afterText', 'afterTextWide', 'afterTextNarrow', 'guess']).isRequired,
   btnColor: PropTypes.oneOf(['blue', 'white', 'green', 'red', 'translucent']).isRequired,
   btnName: PropTypes.string,
   btnValue: PropTypes.string,

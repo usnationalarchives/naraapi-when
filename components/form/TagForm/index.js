@@ -45,6 +45,7 @@ class TagForm extends React.Component {
         <style jsx>{`
           form {
             padding-top:3rem;
+            padding-bottom:3rem;
           }
           span {
             position:absolute;

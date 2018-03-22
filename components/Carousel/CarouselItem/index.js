@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TagForm from '../../form/TagForm';
+import Button from '../../form/Button';
 
 class CarouselItem extends React.Component {
 
@@ -42,7 +43,7 @@ class CarouselItem extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if ( nextProps.disableEditMode ) {
-      this.setState({editMode:false});
+      this.setState({editMode:false,descriptionMode:false});
     }
   }
 
@@ -82,13 +83,33 @@ class CarouselItem extends React.Component {
               <p key={index}>{tag}</p>
             ))}
             <TagForm naId={this.props.naId} onTagItem={this.props.onTagItem} token={this.props.token} />
+            <Button
+              btnName={'close_desc'}
+              btnText={'× Close'}
+              btnValue={'× Close'}
+              onClick={() => this.setState({editMode:false,descriptionMode:false})}
+              btnRole={'secondary'}
+              btnColor={'blue'}
+            />
           </div>
         }
         {(this.state.editMode && this.state.descriptionMode) && 
           <div className={'desc'}>
-            <p>Year: {this.props.year}</p>
-            <p>Title: {this.props.title}</p>
-            <p>Description: {this.props.scope}</p>
+            {(this.props.year) &&
+              <p className={'year'}>{this.props.year}</p>
+            }
+            {(this.props.title) &&
+              <p className={'title'}>{this.props.title}</p>
+            }
+            <p className={'scope'}>{this.props.scope ? this.props.scope : 'No description available'}</p>
+            <Button
+              btnName={'close_desc'}
+              btnText={'× Close'}
+              btnValue={'× Close'}
+              onClick={() => this.setState({editMode:true,descriptionMode:false})}
+              btnRole={'secondary'}
+              btnColor={'blue'}
+            />
           </div>
         }
       </div>
@@ -193,7 +214,7 @@ class CarouselItem extends React.Component {
          animation-fill-mode: forwards;
        }
        button.desc-button::after {
-         content:'?';
+         content:"?";
          background:none;
          color:#112e51;
          text-indent:0;
@@ -215,6 +236,24 @@ class CarouselItem extends React.Component {
          padding:1rem 2rem;
          margin:1rem;
        }
+
+        .desc .title {
+          margin-top:0;
+          font-size:2rem;
+          font-weight:600;
+          color:#fff;
+          line-height:1.2;
+        }
+        .desc .year {
+          margin-top:3rem;
+          margin-bottom:0.5rem;
+          font-size:1.6rem;
+          color:#fff;
+        }
+        .desc .scope {
+          font-style:${this.props.scope ? 'normal' : 'italic'};
+          margin-bottom:3rem;
+        }
 
         @-webkit-keyframes descButton {
           0% {

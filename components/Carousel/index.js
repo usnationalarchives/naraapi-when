@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Swipeable from 'react-swipeable';
 import { throttle } from 'lodash';
 import CarouselItem from './CarouselItem';
+import Button from '../form/Button';
 
 class Carousel extends React.Component {
 
@@ -99,6 +100,24 @@ class Carousel extends React.Component {
       <h2>{this.props.title}</h2>
       <p>{this.props.text}</p>
       
+      <Button
+        btnName={'prev'}
+        btnText={'Prev'}
+        btnValue={'Prev'}
+        onClick={() => this.prevSlide()}
+        btnRole={'arrowPrev'}
+        btnColor={'blue'}
+      />
+
+      <Button
+        btnName={'next'}
+        btnText={'Next'}
+        btnValue={'Next'}
+        onClick={() => this.nextSlide()}
+        btnRole={'arrowNext'}
+        btnColor={'blue'}
+      />
+
       <Swipeable
         onSwipingLeft={ () => this.handleSwipe(true) }
         onSwipingRight={ () => this.handleSwipe() }
@@ -123,9 +142,7 @@ class Carousel extends React.Component {
           </ol>
         </section>
       </Swipeable>
-     
-      <button onClick={() => this.prevSlide()}>Prev</button>
-      <button onClick={() => this.nextSlide()}>Next</button>
+
       <style jsx>{`
         div {
           width: 100%;
@@ -137,7 +154,7 @@ class Carousel extends React.Component {
           height:auto;
           overflow:hidden;
           position:relative;
-          margin-bottom:5rem;
+          margin-bottom:0;
         }
         ol {
           transition: ${this.state.sliding ? 'left 200ms' : 'transform 200ms ease, left 200ms'};
