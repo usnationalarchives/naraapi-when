@@ -43,6 +43,9 @@ class TagForm extends React.Component {
         </label>
         <button type='submit'><span>Submit</span></button>
         <style jsx>{`
+          form {
+            padding-top:3rem;
+          }
           span {
             position:absolute;
             height:1px;
@@ -62,6 +65,7 @@ class TagForm extends React.Component {
             text-transform:uppercase;
             margin-right:1rem;
             caret-color:#fff;
+            color:#fff;
           }
           ::-webkit-input-placeholder {
             color: #fff;

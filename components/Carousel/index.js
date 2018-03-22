@@ -70,6 +70,7 @@ class Carousel extends React.Component {
       position,
       direction,
     });
+
     setTimeout(() => {
       this.setState({
         sliding: false
@@ -110,6 +111,7 @@ class Carousel extends React.Component {
                 image={child.img}
                 title={child.slideTitle}
                 order={this.getOrder(index)}
+                disableEditMode={true}
                 publicContrib={child.publicContrib}
                 naId={child.naId}
                 year={child.year}
@@ -132,14 +134,13 @@ class Carousel extends React.Component {
           margin-bottom:5rem;
         }
         section {
-          height:0;
-          padding-bottom:65%;
+          height:auto;
           overflow:hidden;
           position:relative;
           margin-bottom:5rem;
         }
         ol {
-          transition: ${this.state.sliding ? 'none' : 'transform 200ms ease'};
+          transition: ${this.state.sliding ? 'left 200ms' : 'transform 200ms ease, left 200ms'};
           transform: ${transformOffset};
           display: flex;
           margin: 0;
@@ -150,6 +151,7 @@ class Carousel extends React.Component {
           top:0;
           bottom:0;
           list-style: none;
+          position:relative;
         }
         h2 {
           font-size:2.6rem;

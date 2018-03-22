@@ -40,6 +40,12 @@ class CarouselItem extends React.Component {
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    if ( nextProps.disableEditMode ) {
+      this.setState({editMode:false});
+    }
+  }
+
   slideClass() {
     if ( this.state.editMode || this.state.descriptionMode ) {
       return 'current-slide active-slide';
@@ -60,9 +66,11 @@ class CarouselItem extends React.Component {
     console.log( this.props );
     return(
     <li className={this.slideClass()}>
-      <button className={'edit-button'} onClick={() => {this.setState({editMode: !this.state.editMode, descriptionMode: false})}}>Edit</button>
-      <div className={'image-container'}>
-        <img src={this.props.image} alt={this.props.title} />
+      <div className={'outer-image-container'}>
+        <div className={'image-container'}>
+          <img src={this.props.image} alt={this.props.title} />
+        </div>
+        <button className={'edit-button'} onClick={() => {this.setState({editMode: !this.state.editMode, descriptionMode: false})}}>Edit</button>
         {(this.state.editMode || this.state.descriptionMode) && 
           <button className={'desc-button'} onClick={() => {this.setState({editMode: true, descriptionMode: !this.state.descriptionMode})}}>Description</button>
         }
@@ -89,7 +97,6 @@ class CarouselItem extends React.Component {
           background-image:linear-gradient( to bottom left, #235692, #20bee4 );
         }
         section {
-          transition:padding 200ms;
           overflow:${this.state.editMode ? 'visible !important' : 'hidden'};
         }
         section > ol {
@@ -101,37 +108,40 @@ class CarouselItem extends React.Component {
        li {
         box-sizing:border-box;
         order: ${this.props.order};
-        // background: green;
         flex: 0 0 50%;
         padding:0 1rem 1rem;
-        overflow:visible;
+        overflow:hidden;
         position:relative;
+        transition:flex 200ms;
        }
        li.active-slide {
          flex:0 0 70%;
        }
+       div.outer-image-container {
+         position:relative;
+       }
        div.image-container {
         overflow:hidden;
-        height:${this.state.editMode ? '100%' : '80%'};
+        height:0;
+        padding-bottom:115%;
         position:relative;
         border-radius:0.5rem;
         box-shadow:0 0.4rem 1rem rgba(0,0,0,0.4);
+        background:#fff;
+        overflow:hidden;
        }
-       li:not(.active-slide):not(.current-slide) div.image-container {
-         height:80%;
+       li.active-slide div.image-container {
+         height:auto;
+         padding:0;
        }
        img {
-        width:auto;
+        width:150%;
         height:auto;
         max-width:200%;
         object-fit:cover;
-        position:absolute;
-        top:0;
-        right:-100rem;
-        bottom:0;
-        left:-100rem;
-        margin:-2rem auto 0;
-        transition:width 200ms, height 100ms;
+        position:relative;
+        margin:-1rem -25% 0;
+        display:block;
        }
        li.active-slide img {
         width: 100%;
@@ -139,6 +149,7 @@ class CarouselItem extends React.Component {
         left: 0;
         right: 0;
         margin: 0;
+        position:relative;
         bottom: initial;
         object-fit:initial;
        }
@@ -146,8 +157,8 @@ class CarouselItem extends React.Component {
         display: ${this.props.order === 2 ? 'block' : 'none'};
         position:absolute;
         z-index:2;
-        bottom:0.2rem;
-        right:0;
+        bottom:-0.8rem;
+        right:-0.8rem;
         width:3.5rem;
         height:3.5rem;
         border:0;
@@ -155,7 +166,7 @@ class CarouselItem extends React.Component {
         text-indent:-999rem;
         overflow:hidden;
         border-radius:50%;
-        box-shadow:0.1rem 0.1rem 0.2rem rgba(0,0,0,0.7);
+        box-shadow:0 0 0.4rem rgba(0,0,0,0.7);
        }
        button:after {
          content:'';
@@ -170,6 +181,61 @@ class CarouselItem extends React.Component {
          top:0;
          left:0;
        }
+       button:hover {
+         cursor:pointer;
+       }
+       button.desc-button {
+         left:-0.8rem;
+         right:auto;
+         opacity:0;
+         animation:descButton 400ms;
+         animation-delay:200ms;
+         animation-fill-mode: forwards;
+       }
+       button.desc-button::after {
+         content:'?';
+         background:none;
+         color:#112e51;
+         text-indent:0;
+         font-size:2.4rem;
+         font-weight:700;
+         margin-top:0.3rem;
+       }
+       .tags {
+         padding-top:3rem;
+       }
+       .tags p {
+         display:inline-block;
+         background:#fff;
+         border-radius:4rem;
+         color:#112e51;
+         font-size:1.4rem;
+         text-transform:uppercase;
+         font-weight:700;
+         padding:1rem 2rem;
+         margin:1rem;
+       }
+
+        @-webkit-keyframes descButton {
+          0% {
+            opacity: 0;
+            left:90%;
+          }
+          100% {
+            opacity: 1;
+            left:-0.8rem;
+          }
+        }
+        @keyframes descButton {
+          0% {
+            opacity: 0;
+            left:90%;
+          }
+          100% {
+            opacity: 1;
+            left:-0.8rem;
+          }
+        }
       `}</style>
       
     </li>
