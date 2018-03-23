@@ -25,14 +25,18 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
           startGame={() => onStartClick()}
         />
       }
+
+      {(!gameState.isFetching && !gameState.seeResults && gameState.gameActive) &&
+        <Header
+          gameTime={gameState.gameTime}
+          endGame={onEndGame}
+          size={50}
+          score={gameState.score}
+        />
+      }
+
       {(gameState.gameActive && !gameState.isFetching) &&
         <div>
-          <Header
-            gameTime={gameState.gameTime}
-            endGame={onEndGame}
-            size={50}
-            score={gameState.score}
-          />
           <Slider
             itemData={gameState.data.opaResponse.results.result}
             currentItem={gameState.currentItem}
@@ -41,8 +45,15 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
           <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
         </div>
       }
+
       {(!gameState.gameActive && gameState.gameOver && !gameState.seeResults) &&
         <div>
+          <Header
+            gameTime={0}
+            endGame={()=>false}
+            size={50}
+            score={gameState.score}
+          />
           <Bonus 
             itemData={gameState.data.opaResponse.results.result}
             currentItem={gameState.currentItem}
@@ -50,9 +61,10 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
             onSeeResults={onSeeResults}
             token={userState.token}
           />
-          <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
+          <img className={"nara-bottom"} src={"/static/nara-text-blue.png"} alt={"National Archives"} />
         </div>
       }
+
       {(gameState.gameOver && gameState.seeResults) &&
         <div>
           <Result
