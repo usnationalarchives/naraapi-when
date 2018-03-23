@@ -181,7 +181,7 @@ class Carousel extends React.Component {
           max-width:25rem;
           margin:0 auto;
           line-height:1.3;
-          margin-bottom:3rem;
+          margin-bottom:6rem;
         }
       `}</style>
     </div>
