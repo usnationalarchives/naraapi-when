@@ -39,15 +39,54 @@ const Button = (
 
   switch (btnRole) {
     case 'arrow':
+    case 'arrowPrev':
+    case 'arrowNext':
       btnStyle = {
-
+        width:6.2+'rem',
+        height:6.2+'rem',
+        textIndent:-9999+'rem',
+        after: {
+          content:'""',
+          display:'inline-block',
+          width:1.4+'rem',
+          height:1.4+'rem',
+          border:'0.4rem solid #fff',
+          borderLeft:0,
+          borderTop:0,
+          transform:'rotate(-45deg)',
+          position:'absolute',
+          top:2+'rem',
+          left:1.5+'rem'
+        }
+      }
+      if ( btnRole === 'arrowPrev' || btnRole === 'arrowNext' ) {
+        btnStyle.transform = 'scale(0.5)';
+        btnStyle.position = 'absolute';
+        btnStyle.top = 11+'rem';
+        btnStyle.right = -1.5+'rem';
+      }
+      if ( btnRole === 'arrowPrev' ) {
+        btnStyle.left = -1.5+'rem';
+        btnStyle.right = 'auto';
+        btnStyle.after.transform = 'rotate(-225deg)';
+        btnStyle.after.left = 2.2+'rem';
       }
       break;
+
     case 'tag':
       btnStyle = {
 
       }
       break;
+    case 'secondary':
+      btnStyle = {
+        padding: [1.3 + 'rem', 2.5 + 'rem', 1.3 + 'rem', 2.5 + 'rem'],
+        letterSpacing: 0.1 + 'rem',
+        fontWeight: 400,
+        textTransform: 'uppercase',
+        fontSize:1.4 + 'rem'
+      }
+    break;
     case 'text':
       btnStyle = {
         padding: [1.5 + 'rem', 4 + 'rem', 1.5 + 'rem', 4 + 'rem'],
@@ -108,6 +147,8 @@ const Button = (
       break;
   }
 
+  btnStyle.after = btnStyle.after ? btnStyle.after : {};
+
   return(
     <button
       onClick={onClick}
@@ -116,7 +157,7 @@ const Button = (
       {btnText}
       <style jsx>{`
         button {
-          border-radius:2.5rem;
+          border-radius:${(['arrow','arrowPrev','arrowNext'].indexOf(btnRole) !== -1) ? '50%' : '2.5rem'};
           border:0;
           -webkit-font-smoothing:inherit;
           -moz-osx-font-smoothing:inherit;
@@ -126,19 +167,20 @@ const Button = (
           box-shadow:0 0.3rem 0.6rem rgba( 0, 0, 0, 0.4 );
           outline:none;
           transition:all 0.2s;
+          overflow:hidden;
+          position:relative;
         }
         button::after {
           display:inline-block;
-          width:1rem;
-          height:1rem;
           margin-top:0.2rem;
           border-style: solid;
-          border-width:0.3rem;
+          border-width:${(['arrow','arrowPrev','arrowNext'].indexOf(btnRole) !== -1) ? 0.4+'rem' : 0.3+'rem'};
+          border-color:${(['arrow','arrowPrev','arrowNext'].indexOf(btnRole) !== -1) ? '#fff' : 'inherit'};
           border-left:0;
           border-top:0;
-          transform:rotate(-45deg);
           margin-left:0.3rem;
           transition:border-color 0.2s;
+          text-indent:0;
         }
       `}</style>
       <style jsx>{`
@@ -171,14 +213,30 @@ const Button = (
           margin-bottom:${btnStyle.margin ? btnStyle.margin[2] : 0};
           margin-left:${btnStyle.margin ? btnStyle.margin[3] : 0};
           width:${btnStyle.width ? btnStyle.width : 'auto'};
-          font-size:${btnStyle.fontSize ? btnStyle.fontSize  + 'rem' : 1.7 + 'rem'};
+          height:${btnStyle.height ? btnStyle.height : 'auto'};
+          font-size:${btnStyle.fontSize ? btnStyle.fontSize : 1.7 + 'rem'};
           font-weight:${btnStyle.fontWeight ? btnStyle.fontWeight : 400};
           text-transform:${btnStyle.textTransform ? btnStyle.textTransform : 'auto'};
           letter-spacing: ${btnStyle.letterSpacing ? btnStyle.letterSpacing : 0};
           min-width: ${btnStyle.minWidth ? btnStyle.minWidth : 0};
+          text-indent: ${btnStyle.textIndent ? btnStyle.textIndent : 0};
+          transform:${btnStyle.transform ? btnStyle.transform : 'none'};
+          position:${btnStyle.position ? btnStyle.position : 'relative'};
+          top:${typeof btnStyle.top !== 'undefined' ? btnStyle.top : 'auto'};
+          right:${typeof btnStyle.right !== 'undefined' ? btnStyle.right : 'auto'};
+          bottom:${typeof btnStyle.bottom !== 'undefined' ? btnStyle.bottom : 'auto'};
+          left:${typeof btnStyle.left !== 'undefined' ? btnStyle.left : 'auto'};
         }
         button::after {
-          content:${btnStyle.after ? btnStyle.after.content : ''};
+          content:${btnStyle.after.content ? btnStyle.after.content : ''};
+          width:${btnStyle.after.width ? btnStyle.after.width : '1rem'};
+          height:${btnStyle.after.height ? btnStyle.after.height : '1rem'};
+          transform:${btnStyle.after.transform ? btnStyle.after.transform : 'rotate(-45deg)'};
+          position:${btnStyle.after.position ? btnStyle.after.position : 'relative'};
+          top:${typeof btnStyle.after.top !== 'undefined' ? btnStyle.after.top : 'auto'};
+          right:${typeof btnStyle.after.right !== 'undefined' ? btnStyle.after.right : 'auto'};
+          bottom:${typeof btnStyle.after.bottom !== 'undefined' ? btnStyle.after.bottom : 'auto'};
+          left:${typeof btnStyle.after.left !== 'undefined' ? btnStyle.after.left : 'auto'};
         }
       `}</style>
     </button>
@@ -188,7 +246,7 @@ const Button = (
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   btnText: PropTypes.string.isRequired,
-  btnRole: PropTypes.oneOf(['arrow', 'tag', 'text', 'afterText', 'afterTextWide', 'afterTextNarrow', 'guess']).isRequired,
+  btnRole: PropTypes.oneOf(['arrow', 'arrowPrev', 'arrowNext', 'tag', 'text', 'secondary', 'afterText', 'afterTextWide', 'afterTextNarrow', 'guess']).isRequired,
   btnColor: PropTypes.oneOf(['blue', 'white', 'green', 'red', 'translucent']).isRequired,
   btnName: PropTypes.string,
   btnValue: PropTypes.string,
