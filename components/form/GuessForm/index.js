@@ -28,14 +28,16 @@ class GuessForm extends React.Component {
         return {
           [name]: {
             color: 'green',
-            clicked: true
+            clicked: true,
+            strike: false,
           }
         }
       } else {
         return {
           [name]: {
             color: 'white',
-            clicked: false
+            clicked: false,
+            strike: false,
           }
         }
       }
@@ -44,14 +46,16 @@ class GuessForm extends React.Component {
         return {
           [name]: {
             color: 'red',
-            clicked: true
+            clicked: true,
+            strike: true,
           }
         }
       } else {
         return {
           [name]: {
             color: 'translucent',
-            clicked: false
+            clicked: false,
+            strike: true,
           }
         }
       }
@@ -131,7 +135,7 @@ class GuessForm extends React.Component {
        onClick: this.guess,
        role: 'guess',
        color: 'white',
-       clicked: false
+       clicked: false,
      })
     );
 
@@ -144,15 +148,16 @@ class GuessForm extends React.Component {
       <form id={'form_' + this.state.currentItem}>
         {this.state.slideButtons.map((button) =>
           <Button
-          key={button.name}
-          btnName={button.name}
-          btnText={button.value}
-          btnValue={button.value}
-          onClick={this.guess}
-          btnRole={'guess'}
-          clicked={this.state[button.name] ? this.state[button.name].clicked : false}
-          btnColor={this.state[button.name] ? this.state[button.name].color : 'white'}
-        />
+            key={button.name}
+            btnName={button.name}
+            btnText={button.value}
+            btnValue={button.value}
+            onClick={this.guess}
+            btnRole={'guess'}
+            clicked={this.state[button.name] ? this.state[button.name].clicked : false}
+            strike={this.state[button.name] ? this.state[button.name].strike : false}
+            btnColor={this.state[button.name] ? this.state[button.name].color : 'white'}
+          />
         )
         }
         <style jsx global>{`

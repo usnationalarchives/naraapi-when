@@ -8,7 +8,8 @@ const Button = (
     btnName,
     btnValue,
     btnColor,
-    clicked }) => {
+    clicked,
+    strike }) => {
 
   let btnStyle;
 
@@ -169,6 +170,7 @@ const Button = (
           transition:all 0.2s;
           overflow:hidden;
           position:relative;
+          text-decoration:${strike?'line-through':'none'};
         }
         button::after {
           display:inline-block;
@@ -250,7 +252,8 @@ Button.propTypes = {
   btnColor: PropTypes.oneOf(['blue', 'white', 'green', 'red', 'translucent']).isRequired,
   btnName: PropTypes.string,
   btnValue: PropTypes.string,
-  clicked: PropTypes.bool
+  clicked: PropTypes.bool,
+  strike: PropTypes.bool,
 };
 
 export default Button;
