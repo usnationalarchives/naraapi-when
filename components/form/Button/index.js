@@ -113,7 +113,8 @@ const Button = (
           padding: [1 + 'rem', 1.5 + 'rem', 1 + 'rem', 1.5 + 'rem'],
           letterSpacing: 0.1 + 'rem',
           fontWeight: 700,
-          width: 45 + '%',
+          fontSize:1.4+'rem',
+          width: 48 + '%',
           textTransform: 'uppercase',
           after: {
             content: '""',
