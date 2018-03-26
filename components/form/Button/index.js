@@ -64,10 +64,10 @@ const Button = (
         btnStyle.transform = 'scale(0.5)';
         btnStyle.position = 'absolute';
         btnStyle.top = 11+'rem';
-        btnStyle.right = -1.5+'rem';
+        btnStyle.right = 0+'rem';
       }
       if ( btnRole === 'arrowPrev' ) {
-        btnStyle.left = -1.5+'rem';
+        btnStyle.left = 0+'rem';
         btnStyle.right = 'auto';
         btnStyle.after.transform = 'rotate(-225deg)';
         btnStyle.after.left = 2.2+'rem';
@@ -113,7 +113,8 @@ const Button = (
           padding: [1 + 'rem', 1.5 + 'rem', 1 + 'rem', 1.5 + 'rem'],
           letterSpacing: 0.1 + 'rem',
           fontWeight: 700,
-          width: 45 + '%',
+          fontSize:1.4+'rem',
+          width: 48 + '%',
           textTransform: 'uppercase',
           after: {
             content: '""',

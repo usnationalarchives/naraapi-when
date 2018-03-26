@@ -148,8 +148,6 @@ class Intro extends React.Component {
             height:6.2rem;
             top:0.2rem;
             position:absolute;
-            -webkit-animation:buttonFlash 4s infinite;
-            animation:buttonFlash 4s infinite;
           }
           button span {
             position:absolute;
@@ -169,11 +167,13 @@ class Intro extends React.Component {
             transform:rotate(-45deg);
             margin-top:0.2rem;
             margin-left:-0.5rem;
+            -webkit-animation:buttonRemind 3500ms infinite;
+            animation:buttonRemind 3500ms infinite;
           }
 
           .intro-container.state-3 button {
-            -webkit-animation:arrowSlide 1s forwards, buttonFlash 4s infinite;
-            animation:arrowSlide 1s forwards, buttonFlash 4s infinite;
+            -webkit-animation:arrowSlide 1s forwards;
+            animation:arrowSlide 1s forwards;
           }
 
           .intro-container.load-true button::after {
@@ -237,26 +237,26 @@ class Intro extends React.Component {
             }
           }
 
-          @-webkit-keyframes buttonFlash {
+          @-webkit-keyframes buttonRemind {
             50% {
-              background-color:#132f50;
+              transform:rotate(-45deg) scale(1.0);
             }
             75% {
-              background-color:#50739d;
+              transform:rotate(-45deg) scale(1.3);
             }
             100% {
-              background-color:#132f50;
+              transform:rotate(-45deg) scale(1.0);
             }
           }
-          @keyframes buttonFlash {
+          @keyframes buttonRemind {
             50% {
-              background-color:#132f50;
+              transform:rotate(-45deg) scale(1.0);
             }
             75% {
-              background-color:#50739d;
+              transform:rotate(-45deg) scale(1.3);
             }
             100% {
-              background-color:#132f50;
+              transform:rotate(-45deg) scale(1.0);
             }
           }
 

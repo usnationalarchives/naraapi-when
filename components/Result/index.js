@@ -19,25 +19,25 @@ const Result = ({score, scoreType}) => {
         btnText={"Learn More"}
         onClick={() => window.open("https://catalog.archives.gov/", "_blank")}
         btnRole={'afterTextWide'}
-        btnColor={'blue'}
+        btnColor={'white'}
       />
       <div className={"game-options"}>
         <Button
           btnText={"Share Score"}
           onClick={() => alert("Coming Soon!")}
           btnRole={'afterTextNarrow'}
-          btnColor={'white'}
+          btnColor={'blue'}
         />
         <Button
           btnText={"Replay"}
           onClick={() => location.reload()}
           btnRole={'afterTextNarrow'}
-          btnColor={'white'}
+          btnColor={'blue'}
         />
       </div>
       <style jsx>{`
         .result-container {
-          margin:12.5rem 0 0;
+          margin:10rem 2rem 0;
         }
         .result-container > div {
           float: none;
@@ -47,18 +47,25 @@ const Result = ({score, scoreType}) => {
           text-transform: uppercase;
           letter-spacing: 1px;
           line-height:1.2;
-          font-weight:600;
+          font-weight:700;
           color:#132f50;
         }
+        p {
+          padding:0 5rem;
+          font-size:2rem;
+          margin-top:1rem;
+          margin-bottom:0;
+        }
         em {
-          font-size:2.3rem;
-          font-weight:600;
+          font-weight:700;
           color:#132f50;
           font-style:normal;
         }
         .cta {
-          font-size:1.75rem;
+          font-size:1.9rem;
           color:#132f50;
+          margin-top:0.3rem;
+          margin-bottom:4rem;
         }
         .game-options {
           display: flex;

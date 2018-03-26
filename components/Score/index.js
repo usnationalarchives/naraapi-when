@@ -24,7 +24,8 @@ const Score = ({score, scoreType, icon}) => {
         fontSize: 9 + 'rem',
         height: 'auto',
         span: {
-          lineHeight: 'inherit'
+          lineHeight: 'inherit',
+          textShadow:'0.2rem 0.2rem 0.5rem rgba(0,0,0,0.3)',
         }
       }
       break;
@@ -62,6 +63,7 @@ const Score = ({score, scoreType, icon}) => {
         }
         span {
           line-height:${scoreStyle.span ? scoreStyle.span.lineHeight : '2.4rem'};
+          text-shadow:${scoreStyle.span ? scoreStyle.span.textShadow : 'none'};
         }
       `}</style>
     </div>
