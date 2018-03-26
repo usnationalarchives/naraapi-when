@@ -64,10 +64,10 @@ const Button = (
         btnStyle.transform = 'scale(0.5)';
         btnStyle.position = 'absolute';
         btnStyle.top = 11+'rem';
-        btnStyle.right = -1.5+'rem';
+        btnStyle.right = 0+'rem';
       }
       if ( btnRole === 'arrowPrev' ) {
-        btnStyle.left = -1.5+'rem';
+        btnStyle.left = 0+'rem';
         btnStyle.right = 'auto';
         btnStyle.after.transform = 'rotate(-225deg)';
         btnStyle.after.left = 2.2+'rem';
