@@ -42,7 +42,7 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
             currentItem={gameState.currentItem}
             onGuessYear={onGuessYear}
           />
-          <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
+          <img className={"nara-bottom"} src={"/static/nara-logo-white.png"} alt={"National Archives"} />
         </div>
       }
 
@@ -61,7 +61,7 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
             onSeeResults={onSeeResults}
             token={userState.token}
           />
-          <img className={"nara-bottom"} src={"/static/nara-text-blue.png"} alt={"National Archives"} />
+          <img className={"nara-bottom"} src={"/static/nara-logo-blue.png"} alt={"National Archives"} />
         </div>
       }
 
@@ -70,7 +70,7 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
           <Result
             score={gameState.score}
           />
-          <img className={"nara-bottom"} src={"/static/nara-text-white.png"} alt={"National Archives"} />
+          <img className={"nara-bottom"} src={"/static/nara-logo-white.png"} alt={"National Archives"} />
         </div>
       }
 

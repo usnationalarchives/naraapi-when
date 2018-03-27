@@ -176,7 +176,7 @@ const Button = (
         button::after {
           display:inline-block;
           margin-top:0.2rem;
-          border-style: solid;
+          border-style:solid;
           border-width:${(['arrow','arrowPrev','arrowNext'].indexOf(btnRole) !== -1) ? 0.4+'rem' : 0.3+'rem'};
           border-color:${(['arrow','arrowPrev','arrowNext'].indexOf(btnRole) !== -1) ? '#fff' : 'inherit'};
           border-left:0;
@@ -184,6 +184,10 @@ const Button = (
           margin-left:0.3rem;
           transition:border-color 0.2s;
           text-indent:0;
+        }
+        button:focus {
+          outline:2px dotted #ffffff;
+          outline-offset:3px;
         }
       `}</style>
       <style jsx>{`

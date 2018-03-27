@@ -43,7 +43,7 @@ class Intro extends React.Component {
           </button>
         </section>
         <footer>
-          <img className={"nara-bottom"} src={"/static/nara-text-blue.png"} alt={"National Archives"} />
+          <img className={"nara-bottom"} src={"/static/nara-logo-blue.png"} alt={"National Archives"} />
         </footer>
         <style jsx global>{`
           body {
@@ -148,6 +148,10 @@ class Intro extends React.Component {
             height:6.2rem;
             top:0.2rem;
             position:absolute;
+          }
+          button:focus {
+            outline:2px dotted #ffffff;
+            outline-offset:3px;
           }
           button span {
             position:absolute;
