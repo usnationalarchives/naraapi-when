@@ -43,7 +43,7 @@ class Intro extends React.Component {
           </button>
         </section>
         <footer>
-          <img className={"nara-bottom"} src={"/static/nara-text-blue.png"} alt={"National Archives"} />
+          <img className={"nara-bottom"} src={"/static/nara-logo-blue.png"} alt={"National Archives"} />
         </footer>
         <style jsx global>{`
           body {
