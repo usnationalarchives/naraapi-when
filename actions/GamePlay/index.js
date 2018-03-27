@@ -83,7 +83,6 @@ function loadGame(data) {
 function buildGameState() {
   return {
     type: BUILD_GAME,
-    gameTime: 60,
     currentItem: 0,
     score: 0
   }

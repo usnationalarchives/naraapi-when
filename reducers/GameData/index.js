@@ -17,7 +17,8 @@ const intialState = {
   gameOver: false,
   timeLeft: 0,
   isFetching: false,
-  seeResults: false
+  seeResults: false,
+  gameTime: 60
 };
 
 function gameData(state = intialState, action) {
@@ -25,7 +26,6 @@ function gameData(state = intialState, action) {
     case BUILD_GAME:
       return {
         ...state,
-        gameTime: action.gameTime,
         currentItem: action.currentItem,
         score: action.score
       }

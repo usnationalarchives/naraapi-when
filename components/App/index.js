@@ -23,6 +23,7 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
       {(!gameState.gameActive && !gameState.gameOver) &&
         <Intro
           startGame={() => onStartClick()}
+          gameTime={gameState.gameTime}
         />
       }
 

@@ -32,7 +32,7 @@ class Intro extends React.Component {
           <div className={"text-3"}>
             <p>We&apos;ll show you<br />an image.</p>
             <p>You tell us<br />what year it was taken.</p>
-            <p>Guess as many years<br />as you can in 90 seconds.</p>
+            <p>Guess as many years<br />as you can in {this.props.gameTime} seconds.</p>
             <p><em>Let&apos;s get started!</em></p>
           </div>
         </section>
