@@ -149,6 +149,10 @@ class Intro extends React.Component {
             top:0.2rem;
             position:absolute;
           }
+          button:focus {
+            outline:2px dotted #ffffff;
+            outline-offset:3px;
+          }
           button span {
             position:absolute;
             height:1px;
