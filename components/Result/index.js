@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../form/Button';
 import Score from '../Score';
+import FacebookProvider, { Share } from 'react-facebook-sdk';
 
 const Result = ({score, scoreType}) => {
 
@@ -22,12 +23,17 @@ const Result = ({score, scoreType}) => {
         btnColor={'white'}
       />
       <div className={"game-options"}>
-        <Button
-          btnText={"Share Score"}
-          onClick={() => alert("Coming Soon!")}
-          btnRole={'afterTextNarrow'}
-          btnColor={'blue'}
-        />
+        <FacebookProvider appId="1999400030308486">
+          <Share quote={'I got ' + score + ' points playing When Am I. Can you beat my score?'} href="http://naraapi-when.herokuapp.com/">
+            <Button
+              btnText={"Share Score"}
+              onClick={() => false}
+              btnRole={'afterTextNarrow'}
+              btnColor={'blue'}
+            />
+          </Share>
+        </FacebookProvider>
+
         <Button
           btnText={"Replay"}
           onClick={() => location.reload()}
