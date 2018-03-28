@@ -95,8 +95,14 @@ class GuessForm extends React.Component {
   }
 
   buildGuesses(year) {
-    const _yearMin = Number(year) - 10;
-    const _yearMax = Number(year) + 10;
+    const _currentYear = (new Date()).getFullYear();
+    const _guessRange = 30; // range of years the choices will encompass
+    let _yearMin = Number(year) - Math.round(_guessRange / 2);
+    let _yearMax = Number(year) + Math.round(_guessRange / 2);
+    if ( _yearMax > _currentYear ) {
+      _yearMax = _currentYear;
+      _yearMin = _yearMax - _guessRange;
+    }
     let _buttons = [];
     const rightAnswer = Math.floor(Math.random() * (Math.floor(2) - Math.ceil(0) + 1)) + Math.ceil(0);
     let _usedNumbers = [Number(year)];
