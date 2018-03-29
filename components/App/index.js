@@ -15,6 +15,10 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
       <Head>
         <title>When Am I?</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:url"         content="http://naraapi-when.herokuapp.com/" />
+        <meta property="og:title"       content="When Am I?" />
+        <meta property="og:description" content="Guess what year historic photos from the National Archives were taken." />
+        <meta property="og:image"       content="/static/og-logo.png" />
       </Head>
       {(!userState.token && !userState.loggedIn) &&
         <LoginForm onLogIn={onLogIn} />
