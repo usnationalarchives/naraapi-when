@@ -13,7 +13,7 @@ class Timer extends React.Component {
       endGame: props.endGame,
       lowTime: false,
       size: props.size,
-      radius: (props.size / 2) - 5,
+      radius: Math.floor(props.size / 2) - 5,
       offset: props.size / 2
     }
     this.countDown = this.countDown.bind(this);
@@ -110,7 +110,7 @@ class Timer extends React.Component {
               width: ${this.state.size + 'px'};
               height: ${this.state.size + 'px'};
               line-height: ${this.state.size + 'px'};
-              color: ${ this.state.lowTime ? '#132f50' : '#132f50;' };
+              color: #132f50;
             }
             svg circle {
             stroke-dasharray: ${Math.floor((2 * Math.PI * this.state.radius)) + 'px'};

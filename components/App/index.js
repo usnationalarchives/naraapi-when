@@ -9,7 +9,7 @@ import Slider from '../Slider';
 import Bonus from '../Bonus';
 import LoginForm from '../form/LoginForm';
 
-const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTagItem, onLogIn, onSeeResults }) => {
+const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTagItem, onLogIn, onSeeResults, loginData }) => {
   return (
     <div className="container">
       <Head>
@@ -20,7 +20,7 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
         <meta property="og:description" content="Guess what year historic photos from the National Archives were taken." />
         <meta property="og:image"       content="/static/og-logo.png" />
       </Head>
-      {(!userState.token && !userState.loggedIn) &&
+      {(!loginData) &&
         <LoginForm onLogIn={onLogIn} />
       }
       
@@ -64,7 +64,7 @@ const App = ({ gameState, userState, onStartClick, onEndGame, onGuessYear, onTag
             currentItem={gameState.currentItem}
             onTagItem={onTagItem}
             onSeeResults={onSeeResults}
-            token={userState.token}
+            token={loginData.serverToken}
           />
           <img className={"nara-bottom"} src={"/static/nara-logo-blue.png"} alt={"National Archives"} />
         </div>
